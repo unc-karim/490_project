@@ -1,6 +1,107 @@
-.gitignore
+# Model weights and data
+pth/
+fusion/
+*.pth
+*.pt
+*.h5
+*.pkl
+*.joblib
+
+# Notebooks
+*.ipynb
 segmentation.ipynb
-fusion
-pth
 deep_fusion.ipynb
 deep_fusion_chinese_cimt.ipynb
+hypertension_use.ipynb
+
+# Backend
+backend/__pycache__/
+backend/.venv/
+backend/venv/
+backend/*.pyc
+backend/.pytest_cache/
+backend/normalization_stats.pkl
+backend/.env
+backend/.env.local
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.DS_Store
+frontend/.env.*.local
+
+# Root level test files (temporary/development)
+test.py
+test_*.py
+*_test.py
+fusion_test.py
+test_all_fixes.py
+test_integration.py
+test_vessel_fix.py
+
+# Root level documentation (temporary reports)
+FINAL_VERIFICATION_REPORT.md
+FIXES_SUMMARY.md
+README_FIXES.md
+VESSEL_SEGMENTATION_FIX.md
+IMPLEMENTATION_SUMMARY.md
+GETTING_STARTED.md
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+*.bak
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+
+# Docker
+.dockerignore
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+*.cache
+
+# OS temp files
+*.tmp
+*.temp

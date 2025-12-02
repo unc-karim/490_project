@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: cvd-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount model directories as read-only
+      - ./pth:/app/pth:ro
+      - ./fusion:/app/fusion:ro
+      # Mount normalization statistics
+      - ./backend/normalization_stats.pkl:/app/normalization_stats.pkl:ro
+    environment:
+      - DEVICE=cpu  # Change to cuda if GPU available
+      - LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 180s
+    restart: unless-stopped
+    networks:
+      - cvd-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: cvd-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    restart: unless-stopped
+    networks:
+      - cvd-network
+
+networks:
+  cvd-network:
+    driver: bridge
+
+# Usage:
+# docker-compose up -d        # Start all services
+# docker-compose down         # Stop all services
+# docker-compose logs -f      # View logs
+# docker-compose ps           # List running services
