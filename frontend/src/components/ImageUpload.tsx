@@ -79,39 +79,27 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         <Paper
           {...getRootProps()}
           sx={{
-            border: '3px dashed #6A4DF5',
-            borderRadius: 4,
-            padding: { xs: 6, sm: 8 },
-            minHeight: { xs: 280, sm: 360 },
+            border: '2px dashed #5939E0',
+            borderRadius: 2,
+            padding: { xs: 4, sm: 6 },
+            minHeight: { xs: 200, sm: 240 },
             textAlign: 'center',
             cursor: disabled ? 'not-allowed' : 'pointer',
-            background: isDragActive
-              ? 'linear-gradient(135deg, rgba(106,77,245,0.1) 0%, rgba(166,128,255,0.08) 100%)'
-              : 'linear-gradient(135deg, #ffffff 0%, rgba(106,77,245,0.02) 100%)',
+            background: '#ffffff',
             transition: 'all 0.15s cubic-bezier(0.23, 1, 0.32, 1)',
             opacity: disabled ? 0.5 : 1,
             position: 'relative',
             overflow: 'hidden',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'radial-gradient(circle at 20% 50%, rgba(106,77,245,0.08) 0%, transparent 60%)',
-              pointerEvents: 'none',
-            },
             ...(isDragActive ? {
-              borderColor: '#5939E0',
-              boxShadow: '0 12px 40px rgba(106, 77, 245, 0.25)',
-              backgroundColor: 'rgba(106, 77, 245, 0.04)',
+              borderColor: '#4A2DB0',
+              boxShadow: '0 12px 40px rgba(89, 57, 224, 0.25)',
+              backgroundColor: 'rgba(89, 57, 224, 0.04)',
             } : {
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08)',
               '&:hover': disabled ? {} : {
-                borderColor: '#5939E0',
-                boxShadow: '0 8px 32px rgba(106, 77, 245, 0.15)',
-                backgroundColor: 'rgba(106, 77, 245, 0.02)',
+                borderColor: '#4A2DB0',
+                boxShadow: '0 8px 32px rgba(89, 57, 224, 0.15)',
+                backgroundColor: 'rgba(89, 57, 224, 0.02)',
               },
             }),
           }}
@@ -120,11 +108,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           <CloudUploadIcon
             sx={{
               fontSize: { xs: 80, sm: 104 },
-              color: '#6A4DF5',
+              color: '#5939E0',
               mb: 3,
               transition: 'all 0.15s ease',
               transform: isDragActive ? 'scale(1.15) translateY(-8px)' : 'scale(1)',
-              filter: 'drop-shadow(0 2px 12px rgba(106,77,245,0.15))',
+              filter: 'drop-shadow(0 2px 12px rgba(89, 57, 224, 0.15))',
             }}
           />
           <Typography
@@ -132,16 +120,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
             gutterBottom
             sx={{
               fontWeight: 800,
-              background: 'linear-gradient(135deg, #6A4DF5 0%, #8B6FFF 100%)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              color: '#5939E0',
               fontSize: { xs: '1.4rem', sm: '1.8rem' },
               transition: 'all 0.15s ease',
               letterSpacing: '-0.3px',
             }}
           >
-            {isDragActive ? '📥 Drop here' : '📤 Drag & drop image'}
+            {isDragActive ? 'Drop here' : 'Drag & drop image'}
           </Typography>
           <Typography variant="body1" sx={{ color: '#666', mb: 2, fontWeight: 600, fontSize: { xs: '1rem', sm: '1.1rem' } }}>
             or click to browse
@@ -163,7 +148,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           <Card
             sx={{
               overflow: 'hidden',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.10)',
+              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08)',
               transition: 'all 0.15s ease',
               borderRadius: 3,
               '&:hover': {
@@ -202,7 +187,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                   boxShadow: '0 4px 12px rgba(76, 175, 80, 0.3)',
                 }}
               >
-                ✓ Image uploaded
+                Image uploaded
               </Box>
             </Box>
             <Box
@@ -210,31 +195,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                 p: 3,
                 display: 'flex',
                 gap: 1.5,
-                backgroundColor: 'linear-gradient(135deg, rgba(106,77,245,0.02) 0%, #ffffff 100%)',
+                backgroundColor: 'linear-gradient(135deg, rgba(89,57,224,0.02) 0%, #ffffff 100%)',
                 alignItems: 'center',
-                borderTop: '1px solid rgba(106, 77, 245, 0.1)',
+                borderTop: '1px solid rgba(89, 57, 224, 0.1)',
               }}
             >
-              <Button
-                variant="contained"
-                size="small"
-                startIcon={<EditIcon />}
-                onClick={() => onClear?.()}
-                sx={{
-                  fontWeight: 700,
-                  background: 'linear-gradient(135deg, #6A4DF5 0%, #8B6FFF 100%)',
-                  boxShadow: '0 4px 12px rgba(106, 77, 245, 0.25)',
-                  transition: 'all 0.15s ease',
-                  '&:hover': {
-                    transform: 'scale(1.02)',
-                    boxShadow: '0 6px 20px rgba(106, 77, 245, 0.35)',
-                  },
-                }}
-                aria-label="Change uploaded image"
-              >
-                Change
-              </Button>
-
               {onClear && (
                 <Button
                   size="small"
@@ -266,11 +231,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                   sx={{
                     ml: 'auto',
                     fontWeight: 600,
-                    color: '#6A4DF5',
-                    transition: 'all 0.15s ease',
+                    color: '#5939E0',
+                    transition: 'all 0.2s cubic-bezier(0.23, 1, 0.32, 1)',
                     '&:hover': {
-                      backgroundColor: 'rgba(106, 77, 245, 0.08)',
-                      transform: 'scale(1.02)',
+                      backgroundColor: 'rgba(89, 57, 224, 0.08)',
+                      transform: 'translateY(-2px)',
                     },
                   }}
                 >
