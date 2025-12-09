@@ -21,7 +21,7 @@ class Settings:
     HTN_CHECKPOINT = MODEL_DIR / "pth" / "hypertension.pt"
     CIMT_CHECKPOINT = MODEL_DIR / "pth" / "cimt_reg.pth"
     VESSEL_CHECKPOINT = MODEL_DIR / "pth" / "vessel.pth"
-    FUSION_CHECKPOINT = MODEL_DIR / "fusion" / "fusion_cvd_notskewed.pth"
+    FUSION_CHECKPOINT = MODEL_DIR / "pth" / "fusion_cvd_notskewed.pth"
 
     # Normalization statistics
     NORMALIZATION_STATS_PATH = BACKEND_ROOT / "normalization_stats.pkl"

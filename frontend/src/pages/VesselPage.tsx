@@ -48,7 +48,9 @@ const VesselPage: React.FC<VesselPageProps> = ({ apiReady }) => {
 
     try {
       const response = await api.predictVessel(image);
+      console.log('Vessel API Response:', response);
       if (response.status === 'success' && response.result) {
+        console.log('Setting result:', response.result);
         setResult(response.result);
       } else {
         setError(response.error || 'Prediction failed');
